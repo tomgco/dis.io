@@ -71,3 +71,20 @@ Again this component will have more abstractions for the cli and the browser ver
 #### Finaliser / Packager
 
 Once the Unit Processor has finished it's work unit it will call these set of functions, this will package up the result and send it back the originating `distributor??` - maybe have a separate client to allow the use of uploading overall, or even renaming `distributor` and using a term which covers the both of them.
+
+
+## Technologies Used
+
+### Manager
+- Node.js
+- MongoDB
+- express / connect / flatiron
+
+### Distributor
+- Node.js
+- Redis Store
+
+### Client
+- Socket.io - enable real fast uploading of data / streaming of data
+- Web Workers - Threads for processor, non block ui - browser
+- or Multiple node.js intances using cluster for utilisation of multiple cores.
