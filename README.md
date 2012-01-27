@@ -6,7 +6,35 @@
 
 The name `dis.io` descends from two origins. The first is that is was built as part of my Dissertation for my Degree in Computing BSc at Bournemouth University, however the other origin, which I personally think it is much better at describing the project is because it is a distributed computing platform.
 
+## Installation
+
+### Client
+
+The client originally defaults to the main `dis.io` distribution server and processes various random tasks including benchmarking and analyitical work-units helping to improve `dis.io`. This however can be overwritten and you can use your own distribution and Management servers.
+
+There are two different clients, the browser version and the lesser supported cli version.
+
+#### Web Browser
+
+This will run for any user which visits your page, I recomend using the dis.io test work-unit to get a gauge of the average lifespan of your users on one page. *This will eventually automatically show the mode, mean and average in the control panel*
+
+   <script src='http://tomg.co/dis.io/client.js'></script>
+
+#### CLI
+
+   npm install dis.io-client
+
+### Server
+
+This contains two programs, The manager and the distributor. Both of these components are provided with one package.
+
+   npm install dist.io
+
 ## Architecture
+
+possible manager registry... (later stage)
+
+distributor registry / distpatcher
 
    	        Manager's
    	         | | | |
