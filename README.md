@@ -36,20 +36,20 @@ possible manager registry... (later stage)
 
 distributor registry / distpatcher
 
-   	        Manager's
-   	         | | | |
-   	      Distributor's  <<------------------ Server Application's
-   		     | | | |
-   		     | | | |     <<------------------ Payloads (Work-units)
-   		     | | | |
-   		    Client's
+            Manager's
+             | | | |
+           Distributor's  <<------------------ Server Application's
+             | | | |
+             | | | |     <<------------------ Payloads (Work-units)
+             | | | |
+             Client's
     _________|__|__|_________
-   (						  )
-   (	      Handler         )
-   (	| | | | | | | | | |   )
-   (	| | | | | | | | | |   ) <<----------- Client Applications
-   (	| | | | | | | | | |   )
-   (	| | | | | | | | | |   )
+   (                          )
+   (          Handler         )
+   (    | | | | | | | | | |   )
+   (    | | | | | | | | | |   ) <<----------- Client Applications
+   (    | | | | | | | | | |   )
+   (    | | | | | | | | | |   )
    (      Unit Processor's    )
    (__________________________)
 
