@@ -36,22 +36,22 @@ possible manager registry... (later stage)
 
 distributor registry / distpatcher
 
-            Manager's
-             | | | |
-           Distributor's  <<------------------ Server Application's
-             | | | |
-             | | | |     <<------------------ Payloads (Work-units)
-             | | | |
-             Client's
-    _________|__|__|_________
-   (                          )
-   (          Handler         )
-   (    | | | | | | | | | |   )
-   (    | | | | | | | | | |   ) <<----------- Client Applications
-   (    | | | | | | | | | |   )
-   (    | | | | | | | | | |   )
-   (      Unit Processor's    )
-   (__________________________)
+              Manager's
+               | | | |
+             Distributor's  <<------------------ Server Application's
+               | | | |
+               | | | |     <<------------------ Payloads (Work-units)
+               | | | |
+               Client's
+      _________|__|__|_________
+     (                          )
+     (          Handler         )
+     (    | | | | | | | | | |   )
+     (    | | | | | | | | | |   ) <<----------- Client Applications
+     (    | | | | | | | | | |   )
+     (    | | | | | | | | | |   )
+     (      Unit Processor's    )
+     (__________________________)
 
 dis.io is compromised of three major components; The Manager, The Distributor and the clients. Each have its own role and all three are encumbered under the name dis.io.
 
