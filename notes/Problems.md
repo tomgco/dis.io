@@ -14,3 +14,5 @@ localStorage.setItem("a", JSON.stringify({nom: "nom"}));
 Had to combine the library at distribution time.
 
 Ensuring that to one has manipulated the data being sent.
+
+MDNS - ship a product you should register your service type with the IANA.
