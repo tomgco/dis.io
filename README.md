@@ -18,17 +18,17 @@ There are two different clients, the browser version and the lesser supported cl
 
 This will run for any user which visits your page, I recomend using the dis.io test work-unit to get a gauge of the average lifespan of your users on one page. *This will eventually automatically show the mode, mean and average in the control panel*
 
-   <script src='http://tomg.co/dis.io/client.js'></script>
+    <script src='http://tomg.co/dis.io/client.js'></script>
 
 #### CLI
 
-   npm install dis.io-client
+    npm install dis.io-client
 
 ### Server
 
 This contains two programs, The manager and the distributor. Both of these components are provided with one package.
 
-   npm install dist.io
+    npm install dist.io
 
 ## Architecture
 
