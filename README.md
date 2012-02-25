@@ -115,4 +115,5 @@ Once the Unit Processor has finished it's work unit it will call these set of fu
 ### Client
 - Socket.io - enable real fast uploading of data / streaming of data
 - Web Workers - Threads for processor, non block ui - browser
+- jQuery
 - or Multiple node.js intances using cluster for utilisation of multiple cores.
