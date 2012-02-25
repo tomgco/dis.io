@@ -29,5 +29,8 @@ Must have Web front end.
 Must show status of distributors of certain tasks. 
 Should be non-mission critical.
 Should have an option to be a master or slave.
+Must check against a registry to see if a master is available
+Should fall back to local discovery using bonjour
+Could keep a log of connected slaves and broadcast to local servers 
 
 
