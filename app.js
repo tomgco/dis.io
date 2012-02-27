@@ -1,23 +1,35 @@
-var colors = require('colors')
-  , mdns = require('mdns')
-  , packageJSON = require('./package.json')
-  , appVersion = packageJSON.version.replace(/\./gi, '-')
+
+/**
+ * Module dependencies.
+ */
+
+var express = require('express')
+  , routes = require('./routes')
+  , gzippo = require('gzippo')
+  , stylus = require('stylus')
+  , colors = require('colors')
+  , app = express.createServer()
   ;
 
-process.argv.forEach(function (val, index, array) {
-  if (val === '--slave') {
-    return console.log('Slave started'.green);
-  } else if (val === '--master') {
-    return;
-  }
-
-  if (index === array.length - 1) {
-    console.log('');
-  }
+app.configure(function(){
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(stylus.middleware({ src: __dirname + '/public/', compress: true }));
+  app.use(gzippo.staticGzip(__dirname + '/public'));
+  app.use(app.router);
 });
-var txtRecord = {
-    name: 'dis.io Manager'
-  , master: true
-};
-var ad = mdns.createAdvertisement(mdns.udp('disio-manager', 'v' + appVersion), 1337, { 'txtRecord': txtRecord });
-ad.start();
+
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  console.log('WARN: '.red + 'This application is running in development mode.'.yellow);
+});
+
+app.configure('production', function(){
+  app.use(express.errorHandler());
+});
+
+app.get('/', routes.index);
+
+app.listen(process.env.PORT || 3000);

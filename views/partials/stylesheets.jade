@@ -1,0 +1,4 @@
+//- link(rel='stylesheet', href='/stylesheets/default/bootstrap.min.css')
+- if (typeof locals.styles === 'object')
+	- for (i in locals.styles)
+		link(rel='stylesheet', href=locals.styles[i])

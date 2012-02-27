@@ -11,6 +11,9 @@
   "dependencies": {
       "express": "2.5.X"
     , "colors": "0.6.X"
+    , "stylus": "*"
+    , "gzippo": "*"
+    , "jade": "*"
   },
   "devDependencies": {}
 }
