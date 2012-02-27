@@ -25,12 +25,19 @@ Should find other Distributors and make them aware of the registry if not known.
 Should have an socketio interface to allow connections from clients.
 
 ### Manager
-Must have Web front end.
-Must show status of distributors of certain tasks. 
 Should be non-mission critical.
 Should have an option to be a master or slave.
 Must check against a registry to see if a master is available
 Should fall back to local discovery using bonjour
 Could keep a log of connected slaves and broadcast to local servers 
+
+### Dashboard 
+Must have Web front end.
+Should have a loginpage
+Must show status of managers of certain tasks.
+Must show status of distributors of certain tasks.
+Must be able to set the number of distributors for a task
+Could be able to set the number of Managers for a task
+Could have a range of distributors to scale to.
 
 

@@ -16,3 +16,16 @@ Had to combine the library at distribution time.
 Ensuring that to one has manipulated the data being sent.
 
 MDNS - ship a product you should register your service type with the IANA.
+
+Randomise ports.
+
+dashboard is now separated out, 
+
+master and slave now are dashboard and slaves "WHHHOO ARRE YYOUUU"
+
+Using V Model
+
+each manager knows of every distributor, and what it is doing.
+
+
+
