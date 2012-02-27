@@ -11,7 +11,6 @@
   "dependencies": {
       "express": "2.5.X"
     , "colors": "0.6.X"
-    , "mdns": "0.0.5"
   },
   "devDependencies": {}
 }
