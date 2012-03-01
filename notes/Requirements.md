@@ -6,7 +6,7 @@ These are difficult to come up with, as they usually appear once the system has 
 - Scalability
 This is one of the main concepts that I need to make sure works. The system needs to be able to scale over large networks as users are all in geographically different locations.
 
-- Availability
+- Availability 
 The system should be de coupled so that if any part of it fails there are contingencies in place so that other parts can still be ran.
 
 ## Functional Requirements
@@ -25,11 +25,17 @@ Should find other Distributors and make them aware of the registry if not known.
 Should have an socketio interface to allow connections from clients.
 
 ### Manager
-Should be non-mission critical.
-Should have an option to be a master or slave.
-Must check against a registry to see if a master is available
-Should fall back to local discovery using bonjour
-Could keep a log of connected slaves and broadcast to local servers 
+- Should be non-mission critical.
+- -Should have an option to be a master or slave.- removed 1st march
+- -Must check against a registry to see if a master is available- removed 1st march
+- Should fall back to local discovery using bonjour
+- Could keep a log of connected slaves and broadcast to local servers 
+- Should have a **REST API**
+- - Must allow creation of new tasks
+- - Should allow updates to these
+- - Should allow Deletion of tasks
+- - Could show the current status of tasks
+- - Could show statistics of workers on task
 
 ### Dashboard 
 Must have Web front end.
