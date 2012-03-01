@@ -6,7 +6,7 @@ These are difficult to come up with, as they usually appear once the system has 
 - Scalability
 This is one of the main concepts that I need to make sure works. The system needs to be able to scale over large networks as users are all in geographically different locations.
 
-- Availability 
+- Availability
 The system should be de coupled so that if any part of it fails there are contingencies in place so that other parts can still be ran.
 
 ## Functional Requirements
