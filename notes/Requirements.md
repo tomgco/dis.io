@@ -36,6 +36,8 @@ Should have an socketio interface to allow connections from clients.
 - - Should allow Deletion of tasks
 - - Could show the current status of tasks
 - - Could show statistics of workers on task
+- Must have database connection
+- Must have a RabbitMQ message queue 
 
 ### Dashboard 
 Must have Web front end.
