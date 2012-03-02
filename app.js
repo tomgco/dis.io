@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , discovery = require('./lib/discovery')
   , routes = require('./routes')
   , gzippo = require('gzippo')
   , stylus = require('stylus')

@@ -1,9 +1,15 @@
+var discovery = require('../lib/discovery');
+
 exports.index = function(req, res) {
-  res.render('index', {
-    title: 'dis.io Dashboard',
-    locals: {
-      styles: [],
-      javascript: []
-    }
+  discovery.listAll(function(err, data) {
+    console.log(data);
+    res.render('index', {
+      title: 'dis.io Dashboard',
+      locals: {
+          styles: []
+        , javascript: []
+        , managers: []
+      }
+    });
   });
 };
