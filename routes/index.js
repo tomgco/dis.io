@@ -8,7 +8,7 @@ exports.index = function(req, res) {
       locals: {
           styles: []
         , javascript: []
-        , managers: []
+        , managers: data
       }
     });
   });

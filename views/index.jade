@@ -1,1 +1,4 @@
 p Hello =]
+ul
+- for (i in locals.managers)
+    li #{locals.managers[i].addresses[0]} : #{locals.managers[i].port}
