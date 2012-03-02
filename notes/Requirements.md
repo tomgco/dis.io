@@ -31,17 +31,18 @@ Should have an socketio interface to allow connections from clients.
 - Should fall back to local discovery using bonjour
 - Could keep a log of connected slaves and broadcast to local servers 
 - Should have a **REST API**
+- - Only allow calls from dashboard ip.
 - - Must allow creation of new tasks
 - - Should allow updates to these
 - - Should allow Deletion of tasks
 - - Could show the current status of tasks
 - - Could show statistics of workers on task
 - Must have database connection
-- Must have a RabbitMQ message queue 
+- Must have a RabbitMQ message queue
 
 ### Dashboard 
 Must have Web front end.
-Should have a loginpage
+Should have a login page
 Must show status of managers of certain tasks.
 Must show status of distributors of certain tasks.
 Must be able to set the number of distributors for a task
