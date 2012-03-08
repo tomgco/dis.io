@@ -30,3 +30,5 @@ each manager knows of every distributor, and what it is doing.
 do not be aggressive with serviceVersion 0.6 would be better than 0.6.8 to ensure compatibility
 
 ignore crossing sub domains, as this can be fixed with a network setup. WLAN
+
+papers on mans and across subnets
