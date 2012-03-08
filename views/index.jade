@@ -1,4 +1,14 @@
-p Hello =]
-ul
-- for (i in locals.managers)
-    li #{locals.managers[i].addresses[0]} : #{locals.managers[i].port}
+h3 Connected Managers:
+table.table.table-striped(style='width:25%;')
+  thead
+    tr
+      th #
+      th Ip Address
+      th Port
+  tbody
+  - for (i in locals.managers) {
+    tr
+      td #{i}
+      td #{locals.managers[i].addresses[0]}
+      td #{locals.managers[i].port}
+  - }
