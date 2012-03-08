@@ -2,12 +2,15 @@ h3 Connected Managers:
 table.table.table-striped(style='width:25%;')
   thead
     tr
-      th #
+      th Status
+      th Name
       th Ip Address
       th Port
   tbody
   - for (i in locals.managers) {
     tr
+      td
+        img(src='/images/' + (locals.managers[i].online ? 'online' : 'offline') + '-16.png')
       td #{i}
       td #{locals.managers[i].addresses[0]}
       td #{locals.managers[i].port}
