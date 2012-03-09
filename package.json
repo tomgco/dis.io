@@ -15,6 +15,7 @@
     , "stylus": "*"
     , "gzippo": "*"
     , "jade": "*"
+    , "piton-pipe": "*"
   },
   "devDependencies": {}
 }
