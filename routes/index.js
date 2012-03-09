@@ -1,13 +1,29 @@
-var discovery = require('../lib/discovery');
+var managers = require('../lib/discovery').managers
+  , zmqManagers = require('../lib/discovery').zmqManagers
+  , pipe = require('piton-pipe').createPipe()
+  ;
 
 exports.index = function(req, res) {
-  discovery.listAll(function(err, data) {
+  pipe.add(function(value, cb) {
+    managers.listAll(function(err, data) {
+      value.managers = data;
+      cb(err, value);
+    });
+  });
+  pipe.add(function(value, cb) {
+    zmqManagers.listAll(function(err, data) {
+      value.zmqManagers = data;
+      cb(err, value);
+    });
+  });
+  pipe.run({}, function(error, store) {
     res.render('index', {
       title: 'dis.io Dashboard',
       locals: {
           styles: []
         , javascript: []
-        , managers: data
+        , managers: store.managers
+        , zmqManagers: store.zmqManagers
       }
     });
   });
