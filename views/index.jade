@@ -1,11 +1,12 @@
 h3 Connected Managers:
-table.table.table-striped(style='width:25%;')
+table.table.table-striped(style='width:30%;')
   thead
     tr
       th Status
       th Node
       th Ip Address
       th Port
+      th 0mq Port
   tbody
   - for (i in locals.managers) {
     tr
@@ -14,4 +15,5 @@ table.table.table-striped(style='width:25%;')
       td #{i}
       td #{locals.managers[i].addresses[0]}
       td #{locals.managers[i].port}
+      td #{locals.zmqManagers[i].port}
   - }
