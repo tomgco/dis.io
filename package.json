@@ -1,7 +1,7 @@
 {
   "author": "Tom Gallacher <tomgallacher23@gmail.com> (tomg.co)",
   "name": "dis.io",
-  "version": "0.0.1a",
+  "version": "0.0.2",
   "repository": {
     "url": ""
   },
@@ -10,12 +10,13 @@
   },
   "main": "./app.js",
   "dependencies": {
-      "express": "2.5.X"
-    , "colors": "0.6.X"
-    , "stylus": "*"
-    , "gzippo": "*"
-    , "jade": "*"
-    , "piton-pipe": "*"
+    "express": "2.5.X",
+    "colors": "0.6.X",
+    "stylus": "*",
+    "gzippo": "*",
+    "jade": "*",
+    "piton-pipe": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "optionalDependencies": {}
 }
