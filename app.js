@@ -33,6 +33,10 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 
+app.get('/manage', routes.manage);
+
+app.get('/create', routes.create);
+
 app.listen(process.env.PORT || 3000);
 
 console.log('http://' + app.address().address + ':' + app.address().port );
