@@ -18,13 +18,34 @@ exports.index = function(req, res) {
   });
   pipe.run({}, function(error, store) {
     res.render('index', {
-      title: 'dis.io Dashboard',
-      locals: {
+        title: 'dis.io Dashboard'
+      , locals: {
           styles: []
         , javascript: []
         , managers: store.managers
         , zmqManagers: store.zmqManagers
       }
     });
+  });
+};
+
+exports.manage = function(req, res) {
+  res.render('manage', {
+      title: 'Tasks'
+    , locals: {
+          styles: []
+        , javascript: []
+        , tasks: []
+      }
+  });
+};
+
+exports.create = function(req, res) {
+  res.render('create', {
+      title: 'Tasks'
+    , locals: {
+          styles: []
+        , javascript: []
+      }
   });
 };
