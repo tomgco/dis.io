@@ -1,0 +1,24 @@
+h2 New Task
+form.form-horizontal
+  fieldset
+    legend Basic Information
+
+    .control-group
+      label.control-label(for="taskName") Name
+      .controls
+        input(type="text").input-xlarge#taskName
+        p.help-block The name of your task
+
+    .control-group
+      label.control-label(for="taskDescription") Description
+      .controls
+        textarea.input-xlarge#taskDescription(rows="3")
+        p.help-block A description of your task
+
+  fieldset
+    legend
+    .control-group
+      label.control-label(for="taskDescription") Work Unit
+      .controls
+        textarea.input-xlarge#workUnit(rows="15")
+        p.help-block The work unit to be ran
