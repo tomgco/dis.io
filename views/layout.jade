@@ -1,7 +1,27 @@
 !!!
 html
-	head
-		title= title
-		!=partial('partials/stylesheets', locals)
-	body!= body
-	!=partial('partials/javascript', locals)
+  head
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    !=partial('partials/stylesheets', locals)
+  body
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.brand(href="#") Dis.io
+        .nav-collapse
+          ul.nav
+            li.active
+              a(href="#") Home
+            li
+              a(href="#") About
+            li
+              a(href="#") Contact
+  .container
+    != body
+      //-<!--Body content-->
+  !=partial('partials/javascript', locals)

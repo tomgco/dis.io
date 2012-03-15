@@ -1,5 +1,7 @@
 link(rel='stylesheet', href='/stylesheets/defaults/bootstrap.min.css')
+style
+  body {padding-top: 60px;}
 link(rel='stylesheet', href='/stylesheets/defaults/bootstrap-responsive.min.css')
 - if (typeof locals.styles === 'object')
-	- for (i in locals.styles)
-		link(rel='stylesheet', href=locals.styles[i])
+  - for (i in locals.styles)
+    link(rel='stylesheet', href=locals.styles[i])
