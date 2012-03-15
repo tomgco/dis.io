@@ -31,11 +31,11 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+app.get('/', routes.get.index);
 
-app.get('/manage', routes.manage);
+app.get('/manage', routes.get.manage);
 
-app.get('/create', routes.create);
+app.get('/create', routes.get.create);
 
 app.listen(process.env.PORT || 3000);
 
