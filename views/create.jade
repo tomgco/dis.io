@@ -16,9 +16,23 @@ form.form-horizontal
         p.help-block A description of your task
 
   fieldset
-    legend
+    legend Workunit Information
+
     .control-group
-      label.control-label(for="taskDescription") Work Unit
+      label.control-label(for="workUnitJS") Work Unit
       .controls
-        textarea.input-xlarge#workUnit(rows="15")
-        p.help-block The work unit to be ran
+        input.input-file#fileInput(type="file")
+        p.help-block only .js files are valid
+
+    .control-group
+      label.control-label(for="taskPayload") Payload
+      .controls
+        textarea.input-xlarge#taskPayload(rows="5").
+          {   'n': '1-1001337'
+            , 'param2': [1,2,3,4]
+            , 'param3': 99
+          }
+        p.help-block
+          a(href='#') Load Help from side
+            i.icon-question-sign(rel="popover", data-content="This determines how each task will be broken down into smaller pieces.", data-original-title="Payload?")
+          | &nbsp;A JSON reprisentation of the Payload

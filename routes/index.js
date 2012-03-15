@@ -44,8 +44,16 @@ exports.create = function(req, res) {
   res.render('create', {
       title: 'Tasks'
     , locals: {
-          styles: []
-        , javascript: []
+          styles: [
+            '/stylesheets/editor.css'
+          ]
+        , javascript: [
+            '/ace/src/ace.js'
+          , '/ace/src/theme-twilight.js'
+          , '/ace/src/mode-javascript.js'
+          , '/javascript/editor.js'
+          , '/javascript/tooltip.js'
+        ]
       }
   });
 };
