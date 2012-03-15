@@ -34,3 +34,7 @@ ignore crossing sub domains, as this can be fixed with a network setup. WLAN
 papers on mans and across subnets
 
 Moved to zeoromq from rabbitmq / amq because rabbit centralised the system.
+
+PHP For chris' system
+
+Data Definition - why and docs on how
