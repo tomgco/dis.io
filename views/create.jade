@@ -15,6 +15,17 @@ form.form-horizontal
         textarea.input-xlarge#taskDescription(rows="3")
         p.help-block A description of your task
 
+    .control-group
+      label.control-label(for="workUnitWorkers") Number of Workers
+      .controls
+        .input-prepend
+          span.add-on #
+          input(type="number", size="16", value='1').span2#workUnitWorkers
+        p.help-block
+          a(href='#') Load Help from side
+            i.icon-question-sign
+          | &nbsp; How many distributors a task will be scaled to.
+
   fieldset
     legend Workunit Information
 
@@ -22,17 +33,32 @@ form.form-horizontal
       label.control-label(for="workUnitJS") Work Unit
       .controls
         input.input-file#fileInput(type="file")
-        p.help-block only .js files are valid
+        p.help-block only .js files are valid at the moment
 
     .control-group
       label.control-label(for="taskPayload") Payload
       .controls
-        textarea.input-xlarge#taskPayload(rows="5").
+        textarea.input-xlarge#taskPayload(rows="6").
+          // An example payload description
           {   'n': '1-1001337'
             , 'param2': [1,2,3,4]
             , 'param3': 99
           }
         p.help-block
           a(href='#') Load Help from side
-            i.icon-question-sign(rel="popover", data-content="This determines how each task will be broken down into smaller pieces.", data-original-title="Payload?")
+            i.icon-question-sign(rel="popover"
+              , data-content="This determines how each task will be broken down into smaller pieces."
+              , data-original-title="Payload?")
           | &nbsp;A JSON reprisentation of the Payload
+
+    .control-group
+      label.control-label(for="workUnitItteration") Itteration Attempts
+      .controls
+        .input-prepend
+          span.add-on #
+          input(type="number", size="16", placeholder="Deafult is 3 iterations").span2#workUnitItteration
+        p.help-block
+          a(href='#') Load Help from side
+            i.icon-question-sign
+          | &nbsp;Tells the distributor how many times it should
+          | <br /> distribute a payload for validation.
