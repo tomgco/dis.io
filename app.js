@@ -4,8 +4,12 @@
  */
 
 var express = require('express')
+  , properties = require('./properties')
+  , mongoDelegate = require('dis.io-mongo-crud')
+  , databaseAdaptor = mongoDelegate.database.createDatabaseAdaptor(properties.database)
+  , CrudDelegate = require('dis.io-mongo-crud').crud
   , discovery = require('./lib/discovery')
-  , routes = require('./routes')
+  , Routes = require('./routes')
   , gzippo = require('gzippo')
   , stylus = require('stylus')
   , colors = require('colors')
@@ -31,12 +35,22 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.get.index);
+databaseAdaptor.createConnection(function(connection) {
 
-app.get('/manage', routes.get.manage);
+  var crudDelegate = CrudDelegate.createCrudDelegate(connection)
+    , routes = Routes.createRoutes(crudDelegate)
+    ;
 
-app.get('/create', routes.get.create);
+  crudDelegate.idFilter = CrudDelegate.objectIdFilter(connection);
+  setUpRoutes(routes);
+  app.listen(process.env.PORT || 3000);
+  console.log('http://' + app.address().address + ':' + app.address().port );
+});
 
-app.listen(process.env.PORT || 3000);
+function setUpRoutes(routes) {
+  app.get('/', routes.get.index);
 
-console.log('http://' + app.address().address + ':' + app.address().port );
+  app.get('/manage', routes.get.manage);
+
+  app.get('/create', routes.get.create);
+}

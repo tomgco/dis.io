@@ -1,5 +1,6 @@
-module.exports = {
-    get: require('./get.js')
-  , post: require('./post.js')
+exports.createRoutes = function(crudDelegate) {
+  return {
+      get: require('./get.js')(crudDelegate)
+    , post: require('./post.js')(crudDelegate)
+  };
 };
-
