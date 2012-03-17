@@ -19,6 +19,8 @@ var express = require('express')
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: "dis.troy" }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(stylus.middleware({ src: __dirname + '/public/', compress: true }));
@@ -38,7 +40,7 @@ app.configure('production', function(){
 databaseAdaptor.createConnection(function(connection) {
 
   var crudDelegate = CrudDelegate.createCrudDelegate(connection)
-    , routes = Routes.createRoutes(crudDelegate)
+    , routes = Routes.createRoutes(app, crudDelegate)
     ;
 
   crudDelegate.idFilter = CrudDelegate.objectIdFilter(connection);
@@ -50,7 +52,8 @@ databaseAdaptor.createConnection(function(connection) {
 function setUpRoutes(routes) {
   app.get('/', routes.get.index);
 
-  app.get('/manage', routes.get.manage);
+  app.get('/task', routes.get.task.manage);
 
-  app.get('/create', routes.get.create);
+  app.get('/task/create', routes.get.task.create);
+  app.post('/task/create', routes.post.task.create);
 }

@@ -1,9 +1,12 @@
 var managers = require('../lib/discovery').managers
   , zmqManagers = require('../lib/discovery').zmqManagers
   , pipe = require('piton-pipe').createPipe()
+  , Task = require('../schema/Task.js')
   ;
-module.exports = function(crudDelegate) {
-  var get = {};
+module.exports = function(app, crudDelegate) {
+  var get = {}
+    , task = get.task = new Task();
+
   get.index = function(req, res) {
     pipe.add(function(value, cb) {
       managers.listAll(function(err, data) {
@@ -30,7 +33,7 @@ module.exports = function(crudDelegate) {
     });
   };
 
-  get.manage = function(req, res) {
+  task.manage = function(req, res) {
     res.render('manage', {
         title: 'Tasks'
       , locals: {
@@ -41,9 +44,9 @@ module.exports = function(crudDelegate) {
     });
   };
 
-  get.create = function(req, res) {
-    res.render('create', {
-        title: 'Tasks'
+  task.create = function(req, res) {
+    res.render('form', {
+        title: 'New Task'
       , locals: {
             styles: [
               '/stylesheets/editor.css'
@@ -54,9 +57,13 @@ module.exports = function(crudDelegate) {
             , '/ace/src/mode-javascript.js'
             , '/javascript/editor.js'
             , '/javascript/tooltip.js'
-          ]
+            ]
+          , fields: task.fields
+          , values: req.flash('values')
+          , errors: req.flash('errors')
         }
     });
   };
+
   return get;
 };
