@@ -1,0 +1,39 @@
+h2 New Task
+form.form-horizontal(action='/task/create', method='post', enctype="multipart/form-data")
+  - for (fieldset in locals.fields)
+    - var fields = locals.fields[fieldset];
+    fieldset
+      legend= fieldset
+      .control-group
+        - for (field in fields)
+          .control-group
+            - var properties = fields[field];
+            label.control-label(for=properties.name)= field
+            .controls
+              case properties.type
+                when 'text'
+                  input(type="text", name=properties.name, id=properties.name, value=locals.values[field]).input-xlarge
+                when 'textarea'
+                  textarea.input-xlarge(id=properties.name, rows="3", name=properties.name)=locals.values[field]
+                when 'number'
+                  .input-prepend
+                    span.add-on #
+                    input(type="number", size="16", value=, name=properties.name, id=properties.name, value=locals.values[field]).span2
+                when 'file'
+                  input.input-file(type="file", name=properties.name, id=properties.name, value=locals.values[field])
+                when 'code'
+                  textarea.input-xlarge(rows="6", name=properties.name, id=properties.name).
+                    // An example payload description
+                    {   'n': '1-1001337'
+                      , 'param2': [1,2,3,4]
+                      , 'param3': 99
+                    }
+              p.help-block
+                - if (properties.sideHelp)
+                  a(href='#')
+                    i.icon-question-sign
+                  &nbsp;
+                #{properties.help}
+  .form-actions
+    button(type="submit").btn.btn-primary Save changes
+    button.btn Cancel
