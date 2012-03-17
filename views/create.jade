@@ -1,18 +1,18 @@
 h2 New Task
-form.form-horizontal
+form.form-horizontal(action='/task/create', method='post', enctype="multipart/form-data")
   fieldset
     legend Basic Information
 
     .control-group
       label.control-label(for="taskName") Name
       .controls
-        input(type="text").input-xlarge#taskName
+        input(type="text", name='Name').input-xlarge#taskName
         p.help-block The name of your task
 
     .control-group
       label.control-label(for="taskDescription") Description
       .controls
-        textarea.input-xlarge#taskDescription(rows="3")
+        textarea.input-xlarge#taskDescription(rows="3", name='Description')
         p.help-block A description of your task
 
     .control-group
@@ -20,7 +20,7 @@ form.form-horizontal
       .controls
         .input-prepend
           span.add-on #
-          input(type="number", size="16", value='1').span2#workUnitWorkers
+          input(type="number", size="16", value=, name='NoOfWorkers').span2#workUnitWorkers
         p.help-block
           a(href='#') Load Help from side
             i.icon-question-sign
@@ -32,13 +32,13 @@ form.form-horizontal
     .control-group
       label.control-label(for="workUnitJS") Work Unit
       .controls
-        input.input-file#fileInput(type="file")
+        input.input-file#fileInput(type="file", name='WorkUnitFile')
         p.help-block only .js files are valid at the moment
 
     .control-group
       label.control-label(for="taskPayload") Payload
       .controls
-        textarea.input-xlarge#taskPayload(rows="6").
+        textarea.input-xlarge#taskPayload(rows="6", name='Payload').
           // An example payload description
           {   'n': '1-1001337'
             , 'param2': [1,2,3,4]
@@ -56,13 +56,13 @@ form.form-horizontal
       .controls
         .input-prepend
           span.add-on #
-          input(type="number", size="16", placeholder="Deafult is 3 iterations").span2#workUnitItteration
+          input(type="number", size="16", placeholder="Deafult is 3 iterations", name='NoOfIterations').span2#workUnitItteration
         p.help-block
           a(href='#') Load Help from side
             i.icon-question-sign
           | &nbsp;Tells the distributor how many times it should
           | <br /> distribute a payload for validation.
 
-    .form-actions
-      button(type="submit").btn.btn-primary Save changes
-      button.btn Cancel
+  .form-actions
+    button(type="submit").btn.btn-primary Save changes
+    button.btn Cancel
