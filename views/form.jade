@@ -6,7 +6,7 @@ form.form-horizontal(action='/task/create', method='post', enctype="multipart/fo
       legend= fieldset
       .control-group
         - for (field in fields)
-          .control-group
+          .control-group(class=(locals.errors[field]) ? 'error' : '')
             - var properties = fields[field];
             label.control-label(for=properties.name)= field
             .controls
@@ -28,6 +28,8 @@ form.form-horizontal(action='/task/create', method='post', enctype="multipart/fo
                       , 'param2': [1,2,3,4]
                       , 'param3': 99
                     }
+              - if (locals.errors[field])
+                span.help-inline=locals.errors[field]
               p.help-block
                 - if (properties.sideHelp)
                   a(href='#')
