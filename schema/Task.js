@@ -1,6 +1,13 @@
-module.exports = function() {
+var CrudDelegate = require('dis.io-mongo-crud').crud
+  , collection
+  ;
+
+module.exports = function(connection) {
+  connection.collection('task', function(error, loadedCollection) {
+    collection = loadedCollection;
+  });
   return {
-    fields: {
+      fields: {
         'Basic Information': {
             'Name': {
                 'type': 'text'
@@ -39,5 +46,7 @@ module.exports = function() {
           }
         }
     }
+  , crudDelegate: CrudDelegate.createCrudDelegate(collection)
+  , idFilter: CrudDelegate.objectIdFilter(connection)
   };
 };

@@ -1,5 +1,5 @@
 h2 New Task
-form.form-horizontal(action='/task/create', method='post', enctype="multipart/form-data")
+form.form-horizontal(action=locals.action, method='post', enctype="multipart/form-data")
   - for (fieldset in locals.fields)
     - var fields = locals.fields[fieldset];
     fieldset
@@ -8,21 +8,22 @@ form.form-horizontal(action='/task/create', method='post', enctype="multipart/fo
         - for (field in fields)
           .control-group(class=(locals.errors[field]) ? 'error' : '')
             - var properties = fields[field];
+            - var name = properties.name;
             label.control-label(for=properties.name)= field
             .controls
               case properties.type
                 when 'text'
-                  input(type="text", name=properties.name, id=properties.name, value=locals.values[field]).input-xlarge
+                  input(type="text", name=name, id=name, value=locals.values[name]).input-xlarge
                 when 'textarea'
-                  textarea.input-xlarge(id=properties.name, rows="3", name=properties.name)=locals.values[field]
+                  textarea.input-xlarge(id=name, rows="3", name=name)=locals.values[name]
                 when 'number'
                   .input-prepend
                     span.add-on #
-                    input(type="number", size="16", value=, name=properties.name, id=properties.name, value=locals.values[field]).span2
+                    input(type="number", size="16", value=, name=name, id=name, value=locals.values[name]).span2
                 when 'file'
-                  input.input-file(type="file", name=properties.name, id=properties.name, value=locals.values[field])
+                  input.input-file(type="file", name=name, id=name, value=locals.values[name])
                 when 'code'
-                  textarea.input-xlarge(rows="6", name=properties.name, id=properties.name).
+                  textarea.input-xlarge(rows="6", name=name, id=name).
                     // An example payload description
                     {   'n': '1-1001337'
                       , 'param2': [1,2,3,4]

@@ -3,9 +3,9 @@ var managers = require('../lib/discovery').managers
   , pipe = require('piton-pipe').createPipe()
   , Task = require('../schema/Task.js')
   ;
-module.exports = function(app, crudDelegate) {
+module.exports = function(app, connection) {
   var get = {}
-    , task = get.task = new Task();
+    , task = get.task = new Task(connection);
 
   get.index = function(req, res) {
     pipe.add(function(value, cb) {
@@ -33,14 +33,44 @@ module.exports = function(app, crudDelegate) {
     });
   };
 
-  task.manage = function(req, res) {
-    res.render('manage', {
-        title: 'Tasks'
-      , locals: {
-            styles: []
-          , javascript: []
-          , tasks: []
-        }
+  task.listAll = function(req, res) {
+    task.crudDelegate.listAll(function(err, tasks) {
+      if (err) {
+        res.end(404);
+      } else {
+        res.render('manage', {
+            title: 'Tasks'
+          , locals: {
+                styles: []
+              , javascript: []
+              , tasks: tasks
+            }
+        });
+      }
+    });
+  };
+
+  task.edit = function(req, res) {
+    task.crudDelegate.findById(req.params.id, function(err, entity) {
+      res.render('form', {
+          title: 'Editing Task ID: ' + req.params.id
+        , locals: {
+              styles: [
+                '/stylesheets/editor.css'
+              ]
+            , javascript: [
+                '/ace/src/ace.js'
+              , '/ace/src/theme-twilight.js'
+              , '/ace/src/mode-javascript.js'
+              , '/javascript/editor.js'
+              , '/javascript/tooltip.js'
+              ]
+            , action: '/task/update/' + req.params.id
+            , fields: task.fields
+            , values: entity
+            , errors: req.flash('errors')
+          }
+      });
     });
   };
 

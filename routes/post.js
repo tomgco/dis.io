@@ -1,16 +1,25 @@
-var Task = require('../schema/Task.js');
+var Task = require('../schema/Task.js')
+  ;
 
-module.exports = function(app, crudDelegate) {
+module.exports = function(app, connection) {
   var post = {}
-    , task = post.task = new Task();
+    , task = post.task = new Task(connection)
+    ;
 
   task.create = function(req, res) {
-    // console.log(res);
-    res.redirect('back');
+    task.crudDelegate.create(req.body, redirect.bind(this, res));
   };
 
   task.update = function(req, res) {
-
+    task.crudDelegate.update(req.params.id, req.body, redirect.bind(this, res));
   };
   return post;
 };
+
+function redirect(res, err) {
+  if (err) {
+    res.redirect('back');
+  } else {
+    res.redirect('/task/');
+  }
+}

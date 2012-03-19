@@ -38,12 +38,11 @@ app.configure('production', function(){
 });
 
 databaseAdaptor.createConnection(function(connection) {
-
-  var crudDelegate = CrudDelegate.createCrudDelegate(connection)
-    , routes = Routes.createRoutes(app, crudDelegate)
+  // console.log(connection);
+  var routes = Routes.createRoutes(app, connection)
     ;
 
-  crudDelegate.idFilter = CrudDelegate.objectIdFilter(connection);
+  // crudDelegate.idFilter = CrudDelegate.objectIdFilter(connection);
   setUpRoutes(routes);
   app.listen(process.env.PORT || 3000);
   console.log('http://' + app.address().address + ':' + app.address().port );
@@ -52,7 +51,10 @@ databaseAdaptor.createConnection(function(connection) {
 function setUpRoutes(routes) {
   app.get('/', routes.get.index);
 
-  app.get('/task', routes.get.task.manage);
+  app.get('/task', routes.get.task.listAll);
+
+  app.get('/task/edit/:id', routes.get.task.edit);
+  app.post('/task/update/:id', routes.post.task.update);
 
   app.get('/task/create', routes.get.task.create);
   app.post('/task/create', routes.post.task.create);

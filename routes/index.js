@@ -1,6 +1,6 @@
-exports.createRoutes = function(app, crudDelegate) {
+exports.createRoutes = function(app, connection) {
   return {
-      get: require('./get.js')(app, crudDelegate)
-    , post: require('./post.js')(app, crudDelegate)
+      get: require('./get.js')(app, connection)
+    , post: require('./post.js')(app, connection)
   };
 };

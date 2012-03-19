@@ -17,9 +17,9 @@ h3 Tasks:
         td #{locals.tasks[i].validationAttempts}
         td #{locals.tasks[i].requiredDistributor  }
         td
-          a Edit
+          a(href='/task/edit/' + locals.tasks[i]._id.toString()) Edit
     - }
 - else
   p No tasks found,&nbsp;
-    a(href='/create') create one
+    a(href='/task/create') create one
     ?
