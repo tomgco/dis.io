@@ -7,10 +7,12 @@ module.exports = function(app, connection) {
     ;
 
   task.create = function(req, res) {
+    req.body.files = req.files;
     task.crudDelegate.create(req.body, redirect.bind(this, res));
   };
 
   task.update = function(req, res) {
+    req.body.files = req.files;
     task.crudDelegate.update(req.params.id, req.body, redirect.bind(this, res));
   };
   return post;
