@@ -39,3 +39,4 @@ Icon?
 /.cake_task_cache
 
 public/stylesheets/*.css
+uploads/*
