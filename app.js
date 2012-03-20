@@ -21,7 +21,10 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.cookieParser());
   app.use(express.session({ secret: "dis.troy" }));
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({
+    uploadDir: __dirname + '/uploads',
+    keepExtensions: true
+  }));
   app.use(express.methodOverride());
   app.use(stylus.middleware({ src: __dirname + '/public/', compress: true }));
   app.use(gzippo.staticGzip(__dirname + '/public'));
@@ -38,11 +41,9 @@ app.configure('production', function(){
 });
 
 databaseAdaptor.createConnection(function(connection) {
-  // console.log(connection);
   var routes = Routes.createRoutes(app, connection)
     ;
 
-  // crudDelegate.idFilter = CrudDelegate.objectIdFilter(connection);
   setUpRoutes(routes);
   app.listen(process.env.PORT || 3000);
   console.log('http://' + app.address().address + ':' + app.address().port );
