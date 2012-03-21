@@ -9,21 +9,21 @@ form.form-horizontal(action=locals.action, method='post', enctype="multipart/for
           .control-group(class=(locals.errors[field]) ? 'error' : '')
             - var properties = fields[field];
             - var name = properties.name;
-            label.control-label(for=properties.name)= field
+            label.control-label(for=properties.name)= name
             .controls
               case properties.type
                 when 'text'
-                  input(type="text", name=name, id=name, value=locals.values[name]).input-xlarge
+                  input(type="text", name=field, id=field, value=locals.values[field]).input-xlarge
                 when 'textarea'
-                  textarea.input-xlarge(id=name, rows="3", name=name)=locals.values[name]
+                  textarea.input-xlarge(id=field, rows="3", name=field)=locals.values[field]
                 when 'number'
                   .input-prepend
                     span.add-on #
-                    input(type="number", size="16", value=, name=name, id=name, value=locals.values[name]).span2
+                    input(type="number", size="16", value=, name=field, id=field, value=locals.values[field]).span2
                 when 'file'
-                  input.input-file(type="file", name=name, id=name, value=locals.values[name])
+                  input.input-file(type="file", name=field, id=field, value=locals.values[field])
                 when 'code'
-                  textarea.input-xlarge(rows="6", name=name, id=name).
+                  textarea.input-xlarge(rows="6", name=field, id=field).
                     // An example payload description
                     {   'n': '1-1001337'
                       , 'param2': [1,2,3,4]

@@ -15,7 +15,9 @@
     "stylus": "*",
     "gzippo": "*",
     "jade": "*",
-    "piton-pipe": "*"
+    "piton-pipe": "*",
+    "piton-validity": "*",
+    "underscore": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {}

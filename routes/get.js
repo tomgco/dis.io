@@ -75,6 +75,10 @@ module.exports = function(app, connection) {
   };
 
   task.create = function(req, res) {
+    var errors = req.flash('errors').toString()
+      , values = req.flash('values').toString()
+      ;
+      console.log(errors);
     res.render('form', {
         title: 'New Task'
       , locals: {
@@ -89,8 +93,8 @@ module.exports = function(app, connection) {
             , '/javascript/tooltip.js'
             ]
           , fields: task.fields
-          , values: req.flash('values')
-          , errors: req.flash('errors')
+          , values: errors ? JSON.parse(values) : {}
+          , errors: errors ? JSON.parse(errors) : {}
         }
     });
   };

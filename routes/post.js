@@ -1,4 +1,6 @@
-var Task = require('../schema/Task.js')
+var Task = require('../schema/Task')
+  , validation = require('../lib/validation')
+  , _ = require('underscore')
   ;
 
 module.exports = function(app, connection) {
@@ -7,12 +9,20 @@ module.exports = function(app, connection) {
     ;
 
   task.create = function(req, res) {
-    req.body.files = req.files;
-    task.crudDelegate.create(req.body, redirect.bind(this, res));
+    _.extend(req.body, req.files);
+    validation(req, task, function(err, entity) {
+      if (!Object.keys(err).length) {
+        task.crudDelegate.create(entity, redirect.bind(this, res));
+      } else {
+        req.flash('errors', JSON.stringify(err));
+        req.flash('values', JSON.stringify(entity));
+        redirect(res, err);
+      }
+    });
   };
 
   task.update = function(req, res) {
-    req.body.files = req.files;
+    _.extend(req.body, req.files);
     task.crudDelegate.update(req.params.id, req.body, redirect.bind(this, res));
   };
   return post;
