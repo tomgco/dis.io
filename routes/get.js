@@ -51,6 +51,10 @@ module.exports = function(app, connection) {
   };
 
   task.edit = function(req, res) {
+    var errors = req.flash('errors').toString()
+      , values = req.flash('values').toString()
+      ;
+
     task.crudDelegate.findById(req.params.id, function(err, entity) {
       res.render('form', {
           title: 'Editing Task ID: ' + req.params.id
@@ -67,8 +71,8 @@ module.exports = function(app, connection) {
               ]
             , action: '/task/update/' + req.params.id
             , fields: task.fields
-            , values: entity
-            , errors: req.flash('errors')
+            , values: values ? JSON.parse(values) : entity
+            , errors: errors ? JSON.parse(errors) : {}
           }
       });
     });
@@ -78,7 +82,7 @@ module.exports = function(app, connection) {
     var errors = req.flash('errors').toString()
       , values = req.flash('values').toString()
       ;
-      console.log(errors);
+
     res.render('form', {
         title: 'New Task'
       , locals: {
@@ -93,7 +97,7 @@ module.exports = function(app, connection) {
             , '/javascript/tooltip.js'
             ]
           , fields: task.fields
-          , values: errors ? JSON.parse(values) : {}
+          , values: values ? JSON.parse(values) : {}
           , errors: errors ? JSON.parse(errors) : {}
         }
     });
