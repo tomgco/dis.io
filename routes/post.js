@@ -23,7 +23,6 @@ module.exports = function(app, connection) {
 
   task.update = function(req, res) {
     _.extend(req.body, req.files);
-
     // emit error event to stop callback spagettihhhoh
     validation(req, task, function(err, entity) {
       if (!Object.keys(err).length) {
