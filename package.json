@@ -17,7 +17,8 @@
     "jade": "*",
     "piton-pipe": "*",
     "piton-validity": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "console-trace": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {}
