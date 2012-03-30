@@ -41,4 +41,6 @@ Data Definition - why and docs on how
 
 No heart beat as it would mean new sockets etc. instead done with last reply time.
 
-Use task-ID from command line. need to think how to find it autamatically
+Use task-ID from command line. need to think how to find it automatically
+
+tasks do not recover if a manager goes down.
