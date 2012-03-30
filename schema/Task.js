@@ -4,10 +4,10 @@ var CrudDelegate = require('dis.io-mongo-crud').crud
   , isJSON = require('piton-validity').createPropertyValidator(function(value, cb) {
       try {
         JSON.parse(value);
+        cb(true);
       } catch (e) {
-        return false;
+        cb(false, e.message);
       }
-      return true;
     })
   ;
 
