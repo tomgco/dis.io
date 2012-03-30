@@ -1,6 +1,14 @@
 var CrudDelegate = require('dis.io-mongo-crud').crud
   , collection
   , validation = require('piton-validity').validation
+  , isJSON = require('piton-validity').createPropertyValidator(function(value, cb) {
+      try {
+        JSON.parse(value);
+      } catch (e) {
+        return false;
+      }
+      return true;
+    })
   ;
 
 module.exports = function(connection) {
@@ -41,8 +49,8 @@ module.exports = function(connection) {
                 'type': 'code'
               , 'name': 'Payload'
               , 'help': 'A JSON reprisentation of the Payload.'
-              , 'sideHelp': true
-              , 'validation': [validation.required]
+              , 'sideHelp': '// An example payload description\n\r{   \'n\': \'1-1001337\'\n\r, \'param2\': [1,2,3,4]\n\r, \'param3\': 99\n\r}'
+              , 'validation': [validation.required, isJSON]
           }
           , 'IterationAttempts': {
                 'type': 'number'

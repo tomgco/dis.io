@@ -23,12 +23,7 @@ form.form-horizontal(action=locals.action, method='post', enctype="multipart/for
                 when 'file'
                   input.input-file(type="file", name=field, id=field, value=locals.values[field])
                 when 'code'
-                  textarea.input-xlarge(rows="6", name=field, id=field).
-                    // An example payload description
-                    {   'n': '1-1001337'
-                      , 'param2': [1,2,3,4]
-                      , 'param3': 99
-                    }
+                  textarea.input-xlarge(rows="6", name=field, id=field)=locals.values[field]
               - if (locals.errors[field])
                 span.help-inline=locals.errors[field]
               p.help-block
