@@ -38,3 +38,7 @@ Moved to zeoromq from rabbitmq / amq because rabbit centralised the system.
 PHP For chris' system
 
 Data Definition - why and docs on how
+
+No heart beat as it would mean new sockets etc. instead done with last reply time.
+
+Use task-ID from command line. need to think how to find it autamatically
