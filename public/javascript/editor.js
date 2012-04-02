@@ -1,7 +1,7 @@
 window.onload = function() {
     prettyPrint();
     $('.controls.code').click(function() {
-      var pre = $(this).first().children().filter('pre')
+      var pre = $(this).first().children().filter('pre');
       var textarea = $(this).first().children().filter('textarea');
       pre.hide();
       textarea.show();
