@@ -15,5 +15,5 @@ table.table.table-striped(style='width:30%;')
       td #{i}
       td #{locals.managers[i].addresses[0]}
       td #{locals.managers[i].port}
-      td #{locals.zmqManagers[i].port}
+      td #{locals.managers[i].txtRecord.zmqPort}
   - }

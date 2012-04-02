@@ -40,7 +40,7 @@ module.exports = function(connection) {
         }
       , 'Workunit Information': {
             'Workunit': {
-                'type': 'file'
+                'type': 'code'
               , 'name': 'Workunit'
               , 'help': 'only .js files are valid at the moment.'
               , 'validation': [validation.required]

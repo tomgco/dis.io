@@ -11,12 +11,7 @@ module.exports = function(app, connection) {
     pipe.add(function(value, cb) {
       managers.listAll(function(err, data) {
         value.managers = data;
-        cb(err, value);
-      });
-    });
-    pipe.add(function(value, cb) {
-      zmqManagers.listAll(function(err, data) {
-        value.zmqManagers = data;
+        console.log(data);
         cb(err, value);
       });
     });
@@ -27,7 +22,6 @@ module.exports = function(app, connection) {
             styles: []
           , javascript: []
           , managers: store.managers
-          , zmqManagers: store.zmqManagers
         }
       });
     });
@@ -60,10 +54,12 @@ module.exports = function(app, connection) {
           title: 'Editing Task ID: ' + req.params.id
         , locals: {
               styles: [
-                '/stylesheets/editor.css'
+                  '/stylesheets/editor.css'
+                , '/prettify/prettify.css'
               ]
             , javascript: [
                 '/ace/src/ace.js'
+              , '/prettify/prettify.js'
               , '/ace/src/theme-twilight.js'
               , '/ace/src/mode-javascript.js'
               , '/javascript/editor.js'

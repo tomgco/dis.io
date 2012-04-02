@@ -10,7 +10,7 @@ form.form-horizontal(action=locals.action, method='post', enctype="multipart/for
             - var properties = fields[field];
             - var name = properties.name;
             label.control-label(for=properties.name)= name
-            .controls
+            .controls(class=properties.type)
               case properties.type
                 when 'text'
                   input(type="text", name=field, id=field, value=locals.values[field]).input-xlarge
@@ -23,7 +23,8 @@ form.form-horizontal(action=locals.action, method='post', enctype="multipart/for
                 when 'file'
                   input.input-file(type="file", name=field, id=field, value=locals.values[field])
                 when 'code'
-                  textarea.input-xlarge(rows="6", name=field, id=field)=locals.values[field]
+                  pre.pre-scrollable.prettyprint.editablecode(name=field, id='Code' + field)=locals.values[field]
+                  textarea(style='display:none; width:100%; height:350px;', name=field, id=field)=locals.values[field]
               - if (locals.errors[field])
                 span.help-inline=locals.errors[field]
               p.help-block
