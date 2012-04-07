@@ -44,3 +44,5 @@ No heart beat as it would mean new sockets etc. instead done with last reply tim
 Use task-ID from command line. need to think how to find it automatically
 
 tasks do not recover if a manager goes down.
+
+The possibility for modification of data before it is sent back. geographical distribution and many iterations

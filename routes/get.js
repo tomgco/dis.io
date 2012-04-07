@@ -1,5 +1,5 @@
 var managers = require('../lib/discovery').managers
-  , zmqManagers = require('../lib/discovery').zmqManagers
+  , distributors = require('../lib/discovery').distributors
   , pipe = require('piton-pipe').createPipe()
   , Task = require('../schema/Task.js')
   ;
@@ -24,6 +24,29 @@ module.exports = function(app, connection) {
           , managers: store.managers
         }
       });
+    });
+  };
+
+  get.distributors = function(req, res) {
+    pipe.add(function(value, cb) {
+      distributors.listAllOnline(function(err, data) {
+        value.distributors = data;
+        cb(err, value);
+      });
+    });
+    pipe.run({}, function(error, store) {
+      var addresses = []
+        , keys = Object.keys(store.distributors)
+        ;
+      for (var i = 0; i < keys.length; i++) {
+        var a = store.distributors[keys[i]];
+        var newAdd = {
+              hosts: a.addresses
+            , port: a.port
+          };
+        addresses.push(newAdd);
+      }
+      res.json(addresses);
     });
   };
 
