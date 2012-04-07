@@ -11,7 +11,6 @@ module.exports = function(app, connection) {
     pipe.add(function(value, cb) {
       managers.listAll(function(err, data) {
         value.managers = data;
-        console.log(data);
         cb(err, value);
       });
     });
@@ -55,7 +54,7 @@ module.exports = function(app, connection) {
       if (err) {
         res.end(404);
       } else {
-        res.render('manage', {
+        res.render('task', {
             title: 'Tasks'
           , locals: {
                 styles: []

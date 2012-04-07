@@ -1,0 +1,25 @@
+h3 Tasks:
+- if (locals.tasks.length !== 0)
+  table.table.table-striped(style='width:30%;')
+    thead
+      tr
+        th Status
+        th Name
+        th Validation Attempts
+        th Required Distributors
+        th
+    tbody
+    - for (i in locals.tasks) {
+      tr
+        td
+          img(src='/images/' + locals.tasks[i].status + '-16.png')
+        td #{i}
+        td #{locals.tasks[i].validationAttempts}
+        td #{locals.tasks[i].requiredDistributor  }
+        td
+          a(href='/task/edit/' + locals.tasks[i]._id.toString()) Edit
+    - }
+- else
+  p No tasks found,&nbsp;
+    a(href='/task/create') create one
+    ?
