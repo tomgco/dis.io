@@ -12,15 +12,15 @@ html
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.brand(href="#") Dis.io
+        a.brand Dis.io
         .nav-collapse
           ul.nav
-            li.active
-              a(href="#") Home
-            li
+            li(class=/^.\/*$/.test(currentUrl) ? 'active' : '')
+              a(href="/") Home
+            li(class=/\/task*/.test(currentUrl) ? 'active' : '')
               a(href="/task/") Manage Tasks
             li
-              a(href="#") Contact
+              a(href="mailto:i7827020@bournemouth.ac.uk") Contact
   .container
     != body
       //-<!--Body content-->

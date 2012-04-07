@@ -1,19 +1,34 @@
-h3 Connected Managers:
-table.table.table-striped(style='width:30%;')
-  thead
-    tr
-      th Status
-      th Node
-      th Ip Address
-      th Port
-      th 0mq Port
-  tbody
-  - for (i in locals.managers) {
-    tr
-      td
-        img(src='/images/' + (locals.managers[i].online ? 'online' : 'offline') + '-16.png')
-      td #{i}
-      td #{locals.managers[i].addresses[0]}
-      td #{locals.managers[i].port}
-      td #{locals.managers[i].txtRecord.zmqPort}
-  - }
+h3 List of Managers
+.row
+  .span8
+    table.table.table-striped
+      thead
+        tr
+          th Status
+          th Node
+          th Ip Address
+          th Port
+          th ØMQ Port
+          th Task
+          th Max Distributors
+          th Restart
+      tbody
+      - for (i in locals.managers) {
+        tr
+          td
+            img(src='/images/' + (locals.managers[i].online ? 'online' : 'offline') + '-16.png')
+          td #{i}
+          td #{locals.managers[i].addresses[0]}
+          td #{locals.managers[i].port}
+          td #{locals.managers[i].txtRecord.zmqPort}
+          td
+            a(href='/task/view/' + locals.managers[i].txtRecord.id) Preview
+          td #{locals.managers[i].txtRecord.maxDistributors}
+          td
+            button.btn.btn-mini.btn-inverse(href='#', class=(locals.managers[i].online ? '' : 'disabled')).disabled Restart
+      - }
+  .span4
+    p A list of all managers that have been found on the local network and the associated task, status and other useful information
+    p.muted
+      strong Note:&nbsp;
+      | Not all offline managers will be shown

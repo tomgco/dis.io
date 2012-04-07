@@ -52,13 +52,13 @@ module.exports = function(connection) {
               , 'sideHelp': '// An example payload description\n\r{   \'n\': \'1-1001337\'\n\r, \'param2\': [1,2,3,4]\n\r, \'param3\': 99\n\r}'
               , 'validation': [validation.required, isJSON]
           }
-          , 'IterationAttempts': {
-                'type': 'number'
-              , 'name': 'Iteration Attempts'
-              , 'help': 'Tells the distributor how many times it should distribute a payload for validation.'
-              , 'sideHelp': true
-              , 'validation': [validation.required, validation.integer]
-          }
+          // , 'IterationAttempts': {
+          //       'type': 'number'
+          //     , 'name': 'Iteration Attempts'
+          //     , 'help': 'Tells the distributor how many times it should distribute a payload for validation.'
+          //     , 'sideHelp': true
+          //     , 'validation': [validation.required, validation.integer]
+          // }
         }
     }
   , crudDelegate: CrudDelegate.createCrudDelegate(collection)

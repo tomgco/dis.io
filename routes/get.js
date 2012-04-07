@@ -21,6 +21,7 @@ module.exports = function(app, connection) {
             styles: []
           , javascript: []
           , managers: store.managers
+          , currentUrl: req.url
         }
       });
     });
@@ -60,6 +61,7 @@ module.exports = function(app, connection) {
                 styles: []
               , javascript: []
               , tasks: tasks
+              , currentUrl: req.url
             }
         });
       }
@@ -91,6 +93,7 @@ module.exports = function(app, connection) {
             , fields: task.fields
             , values: values ? JSON.parse(values) : entity
             , errors: errors ? JSON.parse(errors) : {}
+            , currentUrl: req.url
           }
       });
     });
@@ -117,6 +120,7 @@ module.exports = function(app, connection) {
           , fields: task.fields
           , values: values ? JSON.parse(values) : {}
           , errors: errors ? JSON.parse(errors) : {}
+          , currentUrl: req.url
         }
     });
   };

@@ -3,19 +3,14 @@ h3 Tasks:
   table.table.table-striped(style='width:30%;')
     thead
       tr
-        th Status
         th Name
-        th Validation Attempts
-        th Required Distributors
+        th Number Of Workers
         th
     tbody
     - for (i in locals.tasks) {
       tr
-        td
-          img(src='/images/' + locals.tasks[i].status + '-16.png')
-        td #{i}
-        td #{locals.tasks[i].validationAttempts}
-        td #{locals.tasks[i].requiredDistributor  }
+        td #{locals.tasks[i].Name}
+        td #{locals.tasks[i].NumberOfWorkers}
         td
           a(href='/task/edit/' + locals.tasks[i]._id.toString()) Edit
     - }
