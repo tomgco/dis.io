@@ -68,6 +68,31 @@ module.exports = function(app, connection) {
     });
   };
 
+  task.view = function(req, res) {
+    task.crudDelegate.findById(req.params.id, function(err, entity) {
+      res.render('view', {
+          title: 'Viewing Task ID: ' + req.params.id
+        , locals: {
+              styles: [
+                  '/stylesheets/editor.css'
+                , '/prettify/prettify.css'
+              ]
+            , javascript: [
+                '/ace/src/ace.js'
+              , '/prettify/prettify.js'
+              , '/ace/src/theme-twilight.js'
+              , '/ace/src/mode-javascript.js'
+              , '/javascript/editor.js'
+              , '/javascript/tooltip.js'
+              ]
+            , fields: task.fields
+            , values: entity
+            , currentUrl: req.url
+          }
+      });
+    });
+  };
+
   task.edit = function(req, res) {
     var errors = req.flash('errors').toString()
       , values = req.flash('values').toString()
@@ -108,10 +133,12 @@ module.exports = function(app, connection) {
         title: 'New Task'
       , locals: {
             styles: [
-              '/stylesheets/editor.css'
+                '/stylesheets/editor.css'
+              , '/prettify/prettify.css'
             ]
           , javascript: [
               '/ace/src/ace.js'
+            , '/prettify/prettify.js'
             , '/ace/src/theme-twilight.js'
             , '/ace/src/mode-javascript.js'
             , '/javascript/editor.js'

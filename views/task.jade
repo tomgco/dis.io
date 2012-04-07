@@ -1,20 +1,28 @@
-h3 Tasks:
-- if (locals.tasks.length !== 0)
-  table.table.table-striped(style='width:30%;')
-    thead
-      tr
-        th Name
-        th Number Of Workers
-        th
-    tbody
-    - for (i in locals.tasks) {
-      tr
-        td #{locals.tasks[i].Name}
-        td #{locals.tasks[i].NumberOfWorkers}
-        td
-          a(href='/task/edit/' + locals.tasks[i]._id.toString()) Edit
-    - }
-- else
-  p No tasks found,&nbsp;
-    a(href='/task/create') create one
-    ?
+.page-header
+  h1 List of Tasks&nbsp;
+.row
+  .span8
+    a(href='/task/create') Create a new Task
+    - if (locals.tasks.length !== 0)
+      table.table.table-striped
+        thead
+          tr
+            th Task&nbsp;Name
+            th Description
+            th Number&nbsp;Of Workers
+            th
+        tbody
+        - for (i in locals.tasks) {
+          tr
+            td #{locals.tasks[i].Name}
+            td #{locals.tasks[i].Description}
+            td #{locals.tasks[i].NumberOfWorkers}
+            td
+              a(href='/task/edit/' + locals.tasks[i]._id.toString()) Edit
+        - }
+    - else
+      p No tasks found,&nbsp;
+        a(href='/task/create') create one
+        ?
+  .span4
+    p Hello

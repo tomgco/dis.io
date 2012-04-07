@@ -1,0 +1,24 @@
+.page-header
+  h1 Viewing Task
+- for (fieldset in locals.fields)
+  - var fields = locals.fields[fieldset];
+  - for (field in fields)
+    .row
+      - var properties = fields[field];
+      - var name = properties.name;
+      h3=name
+      .span4
+        p.help-block
+          #{properties.help}
+      .span8(class=properties.type)
+        case properties.type
+          when 'text'
+            p=locals.values[field]
+          when 'textarea'
+            p=locals.values[field]
+          when 'number'
+            p=locals.values[field]
+          when 'file'
+            input.input-file(type="file", name=field, id=field, value=locals.values[field])
+          when 'code'
+            pre.pre-scrollable.prettyprint.linenums(name=field, id='Code' + field)=locals.values[field]

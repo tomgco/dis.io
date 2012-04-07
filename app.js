@@ -53,6 +53,7 @@ function setUpRoutes(routes) {
   app.get('/', routes.get.index);
   app.get('/distributors', routes.get.distributors);
   app.get('/task', routes.get.task.listAll);
+  app.get('/task/view/:id', routes.get.task.view);
 
   app.get('/task/edit/:id', routes.get.task.edit);
   app.post('/task/update/:id', routes.post.task.update);

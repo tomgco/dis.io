@@ -20,11 +20,10 @@ form.form-horizontal(action=locals.action, method='post', enctype="multipart/for
                   .input-prepend
                     span.add-on #
                     input(type="number", size="16", value=, name=field, id=field, value=locals.values[field]).span2
-                when 'file'
-                  input.input-file(type="file", name=field, id=field, value=locals.values[field])
                 when 'code'
-                  pre.pre-scrollable.prettyprint.editablecode(name=field, id='Code' + field)=locals.values[field]
-                  textarea(style='display:none; width:100%; height:350px;', name=field, id=field)=locals.values[field]
+                  - var existingCode = (locals.values[field]) ? locals.values[field] : '// Click to start Editing\n'
+                  pre.pre-scrollable.prettyprint.editablecode(name=field, id='Code' + field)=existingCode
+                  textarea(style='display:none; width:100%; height:350px;', name=field, id=field)=existingCode
               - if (locals.errors[field])
                 span.help-inline=locals.errors[field]
               p.help-block
@@ -35,4 +34,5 @@ form.form-horizontal(action=locals.action, method='post', enctype="multipart/for
                 #{properties.help}
   .form-actions
     button(type="submit").btn.btn-primary Save changes
+    &nbsp;
     button.btn Cancel
