@@ -14,7 +14,8 @@
         tbody
         - for (i in locals.tasks) {
           tr
-            td #{locals.tasks[i].Name}
+            td
+              a(href='/task/view/' + locals.tasks[i]._id.toString()) #{locals.tasks[i].Name}
             td #{locals.tasks[i].Description}
             td #{locals.tasks[i].NumberOfWorkers}
             td
