@@ -26,7 +26,7 @@ module.exports = function(app, connection) {
     // emit error event to stop callback spagettihhhoh
     validation(req, task, function(err, entity) {
       if (!Object.keys(err).length) {
-        task.crudDelegate.update(req.params.id, entity, redirect.bind(this, res));
+        task.crudDelegate.update(task.idFilter(req.params.id), entity, redirect.bind(this, res));
       } else {
         req.flash('errors', JSON.stringify(err));
         req.flash('values', JSON.stringify(entity));

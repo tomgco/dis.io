@@ -27,7 +27,7 @@
             a(href='/task/view/' + locals.managers[i].txtRecord.id) Preview
           td #{locals.managers[i].txtRecord.maxDistributors}
           td
-            button.btn.btn-mini.btn-inverse(href='#', class=(locals.managers[i].online ? '' : 'disabled')).disabled Restart
+            a.btn.btn-mini.btn-inverse(href='http://'+locals.managers[i].addresses[0]+':'+locals.managers[i].port+'/restart', class=(locals.managers[i].online ? '' : 'disabled')) Restart
       - }
   .span4
     p A list of all managers that have been found on the local network and the associated task, status and other useful information

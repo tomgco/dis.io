@@ -1,7 +1,8 @@
 var managers = require('../lib/discovery').managers
   , distributors = require('../lib/discovery').distributors
   , pipe = require('piton-pipe').createPipe()
-  , Task = require('../schema/Task.js')
+  , Task = require('../schema/Task')
+  , Result = require('../schema/Result')
   ;
 module.exports = function(app, connection) {
   var get = {}
@@ -69,26 +70,33 @@ module.exports = function(app, connection) {
   };
 
   task.view = function(req, res) {
-    task.crudDelegate.findById(req.params.id, function(err, entity) {
-      res.render('view', {
-          title: 'Viewing Task ID: ' + req.params.id
-        , locals: {
-              styles: [
-                  '/stylesheets/editor.css'
-                , '/prettify/prettify.css'
-              ]
-            , javascript: [
-                '/ace/src/ace.js'
-              , '/prettify/prettify.js'
-              , '/ace/src/theme-twilight.js'
-              , '/ace/src/mode-javascript.js'
-              , '/javascript/editor.js'
-              , '/javascript/tooltip.js'
-              ]
-            , fields: task.fields
-            , values: entity
-            , currentUrl: req.url
-          }
+    var result = new Result(connection, req.params.id);
+    result.crudDelegate.count({}, function(err, count) {
+      task.crudDelegate.findById(task.idFilter(req.params.id), function(err, entity) {
+        res.render('view', {
+            title: 'Viewing Task ID: ' + req.params.id
+          , locals: {
+                styles: [
+                    '/stylesheets/editor.css'
+                  , '/prettify/prettify.css'
+                ]
+              , javascript: [
+                  '/ace/src/ace.js'
+                , '/prettify/prettify.js'
+                , '/ace/src/theme-twilight.js'
+                , '/ace/src/mode-javascript.js'
+                , '/javascript/editor.js'
+                , '/javascript/tooltip.js'
+                ]
+              , fields: task.fields
+              , values: entity
+              , currentUrl: req.url
+              , editid: req.params.id
+              , stats: {
+                  count: count
+                }
+            }
+        });
       });
     });
   };
@@ -98,7 +106,7 @@ module.exports = function(app, connection) {
       , values = req.flash('values').toString()
       ;
 
-    task.crudDelegate.findById(req.params.id, function(err, entity) {
+    task.crudDelegate.findById(task.idFilter(req.params.id), function(err, entity) {
       res.render('form', {
           title: 'Editing Task ID: ' + req.params.id
         , locals: {

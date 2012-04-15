@@ -1,5 +1,35 @@
 .page-header
-  h1 Viewing Task
+  h1 Viewing Task&nbsp;
+    small
+      a(href='/task/edit/' + locals.editid) Edit
+.row
+  h3 Count
+  .span4
+    p.help-block Number of results
+  .span8
+    p #{locals.stats.count}
+.row
+  h3 For Further Information
+  .span4
+    p.help-block Run a MapReduce on the mongo set to get further information.
+  .span8
+    pre.pre-scrollable.prettyprint.linenums.
+      // Map function
+      mapRuns = function() { emit(this.n, 1);}
+
+      // reduce function
+      reduceCount = function(k,v) { var sum=0; for (var i in vals) {sum += vals[i];}return sum}
+
+      // run on a dataset
+      res = db.result#{locals.editid}.mapReduce(mapRuns, reduceCount, {out:"mapResults"})
+.row
+  h3 Results
+  .span4
+    p.help-block View statists about the results that have been collected.
+  .span8
+    //- a Download Results
+    pre.prettyprint.linenums.
+      mongoexport --csv -o /tmp/results.csv -d disio-manager -c result#{locals.editid} -f n,time,hex
 - for (fieldset in locals.fields)
   - var fields = locals.fields[fieldset];
   - for (field in fields)
